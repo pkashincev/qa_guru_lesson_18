@@ -17,7 +17,7 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 public class BaseTest {
 
     private static final String SELENOID_URL = System.getProperty("selenoid.url");
-    private static final String SELENOID_LOGIN = System.getProperty("selenoid.login");;
+    private static final String SELENOID_LOGIN = System.getProperty("selenoid.login");
     private static final String SELENOID_PASSWORD = System.getProperty("selenoid.password");
 
 
