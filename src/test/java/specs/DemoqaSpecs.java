@@ -21,19 +21,10 @@ public class DemoqaSpecs {
             .log().uri()
             .log().headers();
 
-    public static ResponseSpecification responseSpecWithStatusCode200 = new ResponseSpecBuilder()
-            .log(LogDetail.ALL)
-            .expectStatusCode(200)
-            .build();
-
-    public static ResponseSpecification responseSpecWithStatusCode201 = new ResponseSpecBuilder()
-            .log(LogDetail.ALL)
-            .expectStatusCode(201)
-            .build();
-
-    public static ResponseSpecification responseSpecWithStatusCode204 = new ResponseSpecBuilder()
-            .log(LogDetail.ALL)
-            .expectStatusCode(204)
-            .expectBody(emptyOrNullString())
-            .build();
+    public static ResponseSpecification getResponseSpecByStatusCode(int statusCode) {
+        return new ResponseSpecBuilder()
+                .log(LogDetail.ALL)
+                .expectStatusCode(statusCode)
+                .build();
+    }
 }

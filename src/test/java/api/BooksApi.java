@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.emptyOrNullString;
 import static specs.DemoqaSpecs.*;
 
 public class BooksApi {
@@ -18,7 +19,8 @@ public class BooksApi {
                 .when()
                 .delete("/BookStore/v1/Books")
                 .then()
-                .spec(responseSpecWithStatusCode204);
+                .spec(getResponseSpecByStatusCode(204))
+                .body(emptyOrNullString());
     }
 
     public static BooksModel getAllBooks() {
@@ -27,7 +29,7 @@ public class BooksApi {
                         .when()
                         .get("/BookStore/v1/Books")
                         .then()
-                        .spec(responseSpecWithStatusCode200)
+                        .spec(getResponseSpecByStatusCode(200))
                         .extract().as(BooksModel.class);
     }
 
@@ -41,7 +43,7 @@ public class BooksApi {
                 .when()
                 .post("/BookStore/v1/Books")
                 .then()
-                .spec(responseSpecWithStatusCode201);
+                .spec(getResponseSpecByStatusCode(201));
     }
 
     public static List<BookModel> getUserBooks(LoginResponseModel loginResponse) {
@@ -51,7 +53,7 @@ public class BooksApi {
                         .when()
                         .get("/Account/v1/User/" + loginResponse.getUserId())
                         .then()
-                        .spec(responseSpecWithStatusCode200)
+                        .spec(getResponseSpecByStatusCode(200))
                         .extract().as(UserBooksModel.class).getBooks();
     }
 }
